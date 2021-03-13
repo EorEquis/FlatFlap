@@ -1,37 +1,44 @@
-// Sweep
-// by BARRAGAN <http://barraganstudio.com> 
-// This example code is in the public domain.
-
+/*************************************************************************
+ * TriStar Observatory ASCOM FlatFlap Firmware
+ * 2021MAR13 - EOR : EorEquis@tristarobservatory.space
+ * v 0.1.0
+ * 
+ * 
+ * Open and close the flap is all we do now.  It's basically an automated scope cap.
+ * Eventually we'll control an EL panel as well, for flats.
+ * 
+ *  Version     Date        By    Comment
+ *  0.1.0       2021MAR13   EOR   Initial build
+ **************************************************************************/
 
 #include <Servo.h> 
- 
-Servo myservo;  // create servo object to control a servo 
-                // a maximum of eight servo objects can be created 
- 
-int startpos = 105;    // variable to store the servo position 
-int pos;
- 
+#include <EEPROM.h>
+#include "Globals.h" 
+
+
 void setup() 
 { 
-  myservo.attach(9);  // attaches the servo on pin 9 to the servo object 
- myservo.write(startpos);
+
+  // Serial line
+    Serial.begin(9600);
+
+  // Set light pin mode
+    pinMode(ledPin, OUTPUT);
+    analogWrite(ledPin, 0);           
+    
+  // attach servo to servo pin
+    flapservo.write(closedpos);    // Going to change this to set initial position to last stored position, which will be in EEPROM
+    flapservo.attach(SERVOPIN);   // Initialize the servo
+    currentpos = closedpos;
+    coverStatus = CLOSED;
+
 } 
 
  
  
 void loop() 
 { 
+  handleSerial();
+}
 
-delay(5000);
-  for(pos = startpos; pos >= startpos - 90; pos -= 1)  // goes from 0 degrees to 180 degrees 
-  {                                  // in steps of 1 degree 
-    myservo.write(pos);              // tell servo to go to position in variable 'pos' 
-    delay(15);                       // waits 15ms for the servo to reach the position 
-  } 
-  for(pos = startpos - 90; pos <= startpos; pos += 1)     // goes from 180 degrees to 0 degrees 
-  {                                
-    myservo.write(pos);              // tell servo to go to position in variable 'pos' 
-    delay(15);                       // waits 15ms for the servo to reach the position 
-  } 
-
-} 
+    
