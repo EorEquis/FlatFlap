@@ -1,3 +1,5 @@
+// #define DEBUG;
+
 // Setup enums
 // Shamelessly stolen from Jared Wellman 
 // https://github.com/jwellman80/ArduinoLightbox/blob/master/LEDLightBoxAlnitak.ino
@@ -25,8 +27,8 @@ enum motorStatuses
 enum shutterStatuses
 {
   UNKNOWN = 0, // ie not open or closed...could be moving
-  CLOSED,
-  OPEN
+  CLOSED = 1,
+  OPEN = 2
 };
 
 
@@ -34,19 +36,24 @@ enum shutterStatuses
 // Other variables
   String strCmd;
   volatile int ledPin = 11;      // the pin that the LED is attached to, needs to be a PWM pin.
+
+// FlapFlat variables
   int brightness = 0;
   int deviceId = FLIP_FLAT;
   int lightStatus = OFF;
   int coverStatus = UNKNOWN;
-  int motorStatus = STOPPED;  
+  int motorStatus = STOPPED;
+  
 
 // Servo variables
   Servo flapservo;
   const int SERVOPIN = 9;
-  int closedpos = 105;  // Adjust for fit
+  int closedpos = 102;  // Adjust for fit
   int openpos = 5;      // Adjust for clearance  
   int currentpos;       // Current position  
   int pos;              // Position used for movement loops
+  int paddr = 0;         // EEPROM address for storing current servo position
+  int saddr = 1;         // EEPROM address for storing current shutter status
 
 // Command set documentation
   /*******************************************************
@@ -76,13 +83,15 @@ enum shutterStatuses
       99 = Flip-Flat.
 
     qrs is device status where:
+      q = 0 motor stopped
+      q = 1 motor running
+      r = 0 light off
+      r = 1 light on
       s = 0 cover not open/closed
       s = 1 cover closed
       s = 2 cover open
       s = 3 timed out (open/closed not detected)
-      r = 0 light off
-      r = 1 light on
-      q = 0 motor stopped
-      q = 1 motor running
-      vvv is firmware version     
+
+    vvv is firmware version     
+  
   *******************************************************/

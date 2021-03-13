@@ -27,11 +27,16 @@ void setup()
     analogWrite(ledPin, 0);           
     
   // attach servo to servo pin
-    flapservo.write(closedpos);    // Going to change this to set initial position to last stored position, which will be in EEPROM
+    currentpos = EEPROM.read(paddr);      // Last stored position is our current position
+    coverStatus = EEPROM.read(saddr);     // Last stored cover status is current status
+    #ifdef DEBUG
+      Serial.print("Current Position : ");
+      Serial.println(currentpos);
+      Serial.print("Current Cover Status : ");
+      Serial.println(coverStatus);
+    #endif
+    flapservo.write(currentpos);  // Tell servo where it was last.  Prevents automatic initialization to 93 degrees.
     flapservo.attach(SERVOPIN);   // Initialize the servo
-    currentpos = closedpos;
-    coverStatus = CLOSED;
-
 } 
 
  

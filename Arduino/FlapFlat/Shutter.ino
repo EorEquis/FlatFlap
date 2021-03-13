@@ -1,27 +1,41 @@
 void SetShutter(int val)
 {
-  if( val == OPEN && coverStatus != OPEN )
+  if( val == OPEN && coverStatus != OPEN && motorStatus != RUNNING)
   {
-    motorStatus = RUNNING;
-    for(pos = currentpos; pos >= openpos; pos -= 1)  // Open the flap 
+    motorStatus = RUNNING;                                    // So the driver knows the motor is running
+    coverStatus = UNKNOWN;                                    // We don't know if the shutter is open or closed anywhere in between
+    EEPROM.write(saddr, coverStatus);                         // Store the unknown status in case things die during movement
+    for(currentpos; currentpos >= openpos; currentpos -= 1)   // Open the flap 
     {                                  
-      flapservo.write(pos);            
+      flapservo.write(currentpos);            
+      EEPROM.write(paddr, currentpos);                        // Store the current position in case things die during movement
       delay(15);                       
     } 
-    coverStatus = OPEN;
-    motorStatus = STOPPED;
-    currentpos = flapservo.read();
+    coverStatus = OPEN;                                       // Cover is now open
+    motorStatus = STOPPED;                                    // Motor is stopped
+    EEPROM.write(saddr, coverStatus);                         // Store the status so next time we know we left it open
   }
-  else if( val == CLOSED && coverStatus != CLOSED )
+  else if( val == CLOSED && coverStatus != CLOSED && motorStatus != RUNNING )
   {
-    motorStatus = RUNNING;
-    for(pos = currentpos; pos <= closedpos; pos += 1)     // Close the flap
+    motorStatus = RUNNING;                                    // So the driver knows the motor is running
+    coverStatus = UNKNOWN;                                    // We don't know if the shutter is open or closed anywhere in between
+    EEPROM.write(saddr, coverStatus);                         // Store the unknown status in case things die during movement
+    for(currentpos; currentpos <= closedpos; currentpos += 1) // Close the flap
     {                                  
-      flapservo.write(pos);            
+      flapservo.write(currentpos);            
+      EEPROM.write(paddr, currentpos);                        // Store the current position in case things die during movement
       delay(15);                       
     } 
-    coverStatus = CLOSED;
-    motorStatus = STOPPED;    
-    currentpos = flapservo.read();
+    coverStatus = CLOSED;                                     // Cover is now closed
+    motorStatus = STOPPED;                                    // Motor is stopped
+    EEPROM.write(saddr, coverStatus);                         // Store the status so next time we know we left it open
   }
+
+    #ifdef DEBUG
+      Serial.print("Current Stored Position After Move : ");
+      Serial.println(EEPROM.read(paddr));
+      Serial.print("Current Cover Status : ");
+      Serial.println(EEPROM.read(saddr));
+    #endif
+    
 }

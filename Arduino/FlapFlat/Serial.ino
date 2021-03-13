@@ -21,12 +21,12 @@ void handleSerial()
   cmd = str + 1;
   data = str + 2;
   
-  // useful for debugging to make sure your commands came through and are parsed correctly.
-    if( false )
-    {
+  // debugging to make sure your commands came through and are parsed correctly.
+
+    #ifdef DEBUGCMD
       sprintf( temp, "cmd = >%c%s;", cmd, data);
       Serial.write(temp);
-    } 
+    #endif
     
 
 
@@ -145,7 +145,7 @@ void handleSerial()
         id = deviceId
     */
       case 'V': // get firmware version
-      sprintf(temp, "*V%d001", deviceId);
+      sprintf(temp, "*V%d010", deviceId);
       Serial.write(temp);
       break;
     }    
