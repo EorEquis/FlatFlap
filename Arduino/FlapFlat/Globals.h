@@ -38,7 +38,7 @@ enum shutterStatuses
   volatile int ledPin = 11;      // the pin that the LED is attached to, needs to be a PWM pin.
 
 // FlapFlat variables
-  int brightness = 0;
+  int brightness = 255;
   int deviceId = FLIP_FLAT;
   int lightStatus = OFF;
   int coverStatus = UNKNOWN;
