@@ -80,7 +80,8 @@ void handleSerial()
       sprintf(temp, "*L%d000", deviceId);
       Serial.write(temp);
       lightStatus = ON;
-      analogWrite(ledPin, brightness);
+      //analogWrite(elPin, brightness);
+      analogWrite(elPin, 255);    // Brightness cannot be set with EL Panel at this time.  Just turn it on, but maintain brightness for driver.
       break;
 
     /*
@@ -93,7 +94,7 @@ void handleSerial()
       sprintf(temp, "*D%d000", deviceId);
       Serial.write(temp);
       lightStatus = OFF;
-      analogWrite(ledPin, 0);
+      analogWrite(elPin, 0);
       break;
 
     /*
@@ -106,8 +107,8 @@ void handleSerial()
     */
       case 'B':
       brightness = atoi(data);    
-      if( lightStatus == ON ) 
-        analogWrite(ledPin, brightness);   
+//      if( lightStatus == ON )             Brightness cannot be changed w/ EL panel at this time, just respond as Alnitak driver expects
+//        analogWrite(elPin, brightness);   
       sprintf( temp, "*B%d%03d", deviceId, brightness );
       Serial.write(temp);
         break;

@@ -35,7 +35,7 @@ enum shutterStatuses
 
 // Other variables
   String strCmd;
-  volatile int ledPin = 11;      // the pin that the LED is attached to, needs to be a PWM pin.
+  volatile int elPin = 11;      // the pin that the EL Relay is attached to.
 
 // FlapFlat variables
   int brightness = 255;

@@ -23,8 +23,8 @@ void setup()
     Serial.begin(9600);
 
   // Set light pin mode
-    pinMode(ledPin, OUTPUT);
-    analogWrite(ledPin, 0);           
+    pinMode(elPin, OUTPUT);
+    analogWrite(elPin, 0);           
     
   // attach servo to servo pin
     currentpos = EEPROM.read(paddr);      // Last stored position is our current position
