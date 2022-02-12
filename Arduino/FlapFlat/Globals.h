@@ -9,7 +9,7 @@ int lightPin = 5;             // the pin the EL panel's relay is attached to.
 int servodelay = 15;          // ms to wait after a servo move of 1 degree.  Higher numbers slow the opening/closing speed
 int currentpos;               // current servo position
 int targetpos;                // target servo position
-int closedPos = 102;          // change this to achieve a good flat close against the end of the scope tube.
+int closedPos = 104;          // change this to achieve a good flat close against the end of the scope tube.
 String strCmd;                // holds the command sent via serial
 char response[50];
     

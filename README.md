@@ -45,7 +45,7 @@
 		
 	Software:
 		Sequence Generator Pro 4.0.0.700 64 Bit
-		N.I.N.A 2.0 BETA 019
+		N.I.N.A V2.0 BETA 019 and V2.0 BETA 045
 
 ## Usage Notes
 	SGP Switch Handling
