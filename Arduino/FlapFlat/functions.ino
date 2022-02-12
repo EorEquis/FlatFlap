@@ -14,7 +14,7 @@ void setLight(int val)
       Serial.println("Light off");
     #endif              
     
-  }
+  }                                                                      
 }
 
 void setShutter(int val)

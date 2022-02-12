@@ -98,28 +98,31 @@ void handleSerial() {
       // Input : L00s#    (s = lightStatus)
       // Output : L0sr* (s is lightStatus, r is 0 (success) or 1 (error)
       case 'L':
-        lightReq = atoi(data);
-          if (lightReq == CALIBRATORREADY && lightStatus == CALIBRATOROFF)
-            {
-              setLight(CALIBRATORREADY);
-              lightStatus = CALIBRATORREADY;
-              errorStatus = NORMAL;
-            }
-
-          else if (lightReq == CALIBRATOROFF && lightStatus == CALIBRATORREADY)
-            {
-              setLight(CALIBRATOROFF);
-              lightStatus = CALIBRATOROFF;
-              errorStatus = NORMAL;
-            }
-          else
-            {
-              errorStatus = ISERROR;
-            }
-        sprintf(response, "L0%i%i*", lightStatus, errorStatus);
-        Serial.write(response);
-        break;
-
+        #ifdef CALIBRATOR
+          
+          lightReq = atoi(data);
+            if (lightReq == CALIBRATORREADY && lightStatus == CALIBRATOROFF)
+              {
+                setLight(CALIBRATORREADY);
+                lightStatus = CALIBRATORREADY;
+                errorStatus = NORMAL;
+              }
+  
+            else if (lightReq == CALIBRATOROFF && lightStatus == CALIBRATORREADY)
+              {
+                setLight(CALIBRATOROFF);
+                lightStatus = CALIBRATOROFF;
+                errorStatus = NORMAL;
+              }
+            else
+              {
+                errorStatus = ISERROR;
+              }
+          sprintf(response, "L0%i%i*", lightStatus, errorStatus);
+          Serial.write(response);
+          break;
+        #endif
+        
       // Status (S) : Query the device's status
       // Input : S000#
       // Output : S0lc* : l (Letter l, not number 1) = light status, s = cover status
