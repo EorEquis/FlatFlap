@@ -22,8 +22,9 @@
 		Download ScopeCover Setup.exe if all you want is this driver.
 	ASCOM CoverCalibrator Driver
 		The ASCOM.FlatFlap.CoverCalibrator driver can be used with either a cover only (the light 
-		functionality will still present in the client, but will do nothing) or with some sort of switchable 
-		light source.  (My own device is a small EL sheet and 12V DC inverter, controlled by a small relay).
+		functionality will still present in the client, but will do nothing) or with some sort of 
+		switchable light source.  (My own device is a small EL sheet and 12V DC inverter, 
+		controlled by a small relay).
 		
 		Download FlatFlap Setup.exe if all you want is this driver.
 	
