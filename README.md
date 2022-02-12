@@ -15,10 +15,14 @@
 	ASCOM Switch Driver updated to V2 protocol 
 		The ASCOM.ScopeCover.Switch can function as a switch driver to control only the cover.  Useful if you don't want/need the
 		complexity of a calibration light, and also allows greater flexibility with various clients/sequencing strategies.
+		
+		Download ScopeCover Setup.exe if all you want is this driver.
 	ASCOM CoverCalibrator Driver
 		The ASCOM.FlatFlap.CoverCalibrator driver can be used with either a cover only (the light functionality will still present
 		in the client, but will do nothing) or with some sort of switchable light source.  (My own device is a small EL sheet and 12V DC
 		inverter, controlled by a small relay).
+		
+		Download FlatFlap Setup.exe if all you want is this driver.
 	
 ## Tested With
 	Servos: 
