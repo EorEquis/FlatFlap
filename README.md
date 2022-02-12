@@ -1,5 +1,6 @@
 ## What 
-	A "Cover/Calibrator".  Features a motorized telescope cover, and optional calibrator (light/led/EL panel) controller.
+	A "Cover/Calibrator".  Features a motorized telescope cover, and optional calibrator 
+	(light/led/EL panel) controller.
 
 ## Who
 	Created By:  eorequis@stuffupthere.com
@@ -11,18 +12,18 @@
 ## Current State
 	V2 Arduino Firmware
 		Protocol documented in arduino code, basic syntax is :
-		c00n# : c = command ([P]ing, [C]over, [L]ight) and n is typically a value mapped to ASCOM enums for cover and 
-		calibrator.
+		c00n# : c = command ([P]ing, [C]over, [L]ight) and n is typically a value mapped to ASCOM enums
+		for cover and calibrator.
 	ASCOM Switch Driver updated to V2 protocol 
-		The ASCOM.ScopeCover.Switch can function as a switch driver to control only the cover.  Useful if you don't 
-		want/need the complexity of a calibration light, and also allows greater flexibility with various 
-		clients/sequencing strategies.
+		The ASCOM.ScopeCover.Switch can function as a switch driver to control only the cover.  Useful
+		if you don't want/need the complexity of a calibration light, and also allows greater flexibility 
+		with various clients/sequencing strategies.
 		
 		Download ScopeCover Setup.exe if all you want is this driver.
 	ASCOM CoverCalibrator Driver
-		The ASCOM.FlatFlap.CoverCalibrator driver can be used with either a cover only (the light functionality will 
-		still present in the client, but will do nothing) or with some sort of switchable light source.  (My own device 
-		is a small EL sheet and 12V DC inverter, controlled by a small relay).
+		The ASCOM.FlatFlap.CoverCalibrator driver can be used with either a cover only (the light 
+		functionality will still present in the client, but will do nothing) or with some sort of switchable 
+		light source.  (My own device is a small EL sheet and 12V DC inverter, controlled by a small relay).
 		
 		Download FlatFlap Setup.exe if all you want is this driver.
 	
