@@ -1,0 +1,107 @@
+Start-up ASCOM Device Conformance Checker - Version 6.5.7933.18877 - 64bit mode
+Start-up ASCOM Platform 6.6 6.6.0.3444
+ 
+Switch read and write delays can be adjusted through the Options / Conformance Options menu 
+ 
+ 
+ConformanceCheck ASCOM Device Conformance Checker Version 6.5.7933.18877, Build time: 9/20/2021 11:29:18
+ConformanceCheck Running on: ASCOM Platform 6.6 6.6.0.3444
+ 
+ConformanceCheck Driver ProgID: ASCOM.ScopeCover.Switch
+ 
+Error handling 
+Error number for "Not Implemented" is: 80040400
+Error number for "Invalid Value 1" is: 80040405
+Error number for "Value Not Set 1" is: 80040402
+Error number for "Value Not Set 2" is: 80040403
+Error messages will not be interpreted to infer state.
+ 
+18:32:59.881 Driver Access Checks              OK       
+18:33:00.555 AccessChecks                      OK       Successfully created driver using late binding
+18:33:00.584 AccessChecks                      OK       Successfully connected using late binding
+18:33:00.587 AccessChecks                      INFO     The driver is a .NET object
+18:33:00.590 AccessChecks                      INFO     The AssemblyQualifiedName is: ASCOM.ScopeCover.Switch, ASCOM.ScopeCover.Switch, Version=2.0.0.0, Culture=n
+18:33:00.593 AccessChecks                      INFO     The driver implements interface: ASCOM.DeviceInterface.ISwitchV2
+18:33:01.283 AccessChecks                      INFO     Device does not expose interface ISwitch
+18:33:01.319 AccessChecks                      INFO     Device exposes interface ISwitchV2
+18:33:02.013 AccessChecks                      OK       Successfully created driver using driver access toolkit
+18:33:02.038 AccessChecks                      OK       Successfully connected using driver access toolkit
+ 
+Conform is using ASCOM.DriverAccess.Switch to get a Switch object
+18:33:02.068 ConformanceCheck                  OK       Driver instance created successfully
+18:33:02.154 ConformanceCheck                  OK       Connected OK
+ 
+Common Driver Methods 
+18:33:02.208 InterfaceVersion                  OK       2
+18:33:02.248 Connected                         OK       True
+18:33:02.280 Description                       OK       ScopeCover Switch
+18:33:02.313 DriverInfo                        OK       Switch driver for Scope Cover. Version: 2.0
+18:33:02.359 DriverVersion                     OK       2.0
+18:33:02.391 Name                              OK       ASCOM Scope Cover Switch
+18:33:02.422 CommandString                     INFO     Conform cannot test the CommandString method
+18:33:02.426 CommandBlind                      INFO     Conform cannot test the CommandBlind method
+18:33:02.430 CommandBool                       INFO     Conform cannot test the CommandBool method
+18:33:02.433 Action                            INFO     Conform cannot test the Action method
+18:33:02.439 SupportedActions                  OK       Driver returned an empty action list
+ 
+Properties 
+18:33:02.568 MaxSwitch                         OK       1
+ 
+Methods 
+18:33:02.681 SwitchNumber                      OK       Switch device threw an InvalidOperationException when a switch ID below 0 was used in method: CanWrite
+18:33:02.686 SwitchNumber                      OK       Switch device threw an InvalidOperationException when a switch ID above MaxSwitch was used in method: CanWrite
+18:33:02.691 SwitchNumber                      OK       Switch device threw an InvalidOperationException when a switch ID below 0 was used in method: GetSwitch
+18:33:02.696 SwitchNumber                      OK       Switch device threw an InvalidOperationException when a switch ID above MaxSwitch was used in method: GetSwitch
+18:33:02.701 SwitchNumber                      OK       Switch device threw an InvalidOperationException when a switch ID below 0 was used in method: GetSwitchDescription
+18:33:02.706 SwitchNumber                      OK       Switch device threw an InvalidOperationException when a switch ID above MaxSwitch was used in method: GetSwitchDescription
+18:33:02.711 SwitchNumber                      OK       Switch device threw an InvalidOperationException when a switch ID below 0 was used in method: GetSwitchName
+18:33:02.715 SwitchNumber                      OK       Switch device threw an InvalidOperationException when a switch ID above MaxSwitch was used in method: GetSwitchName
+18:33:02.720 SwitchNumber                      OK       Switch device threw an InvalidOperationException when a switch ID below 0 was used in method: GetSwitchValue
+18:33:02.725 SwitchNumber                      OK       Switch device threw an InvalidOperationException when a switch ID above MaxSwitch was used in method: GetSwitchValue
+18:33:02.730 SwitchNumber                      OK       Switch device threw an InvalidOperationException when a switch ID below 0 was used in method: MaxSwitchValue
+18:33:02.734 SwitchNumber                      OK       Switch device threw an InvalidOperationException when a switch ID above MaxSwitch was used in method: MaxSwitchValue
+18:33:02.740 SwitchNumber                      OK       Switch device threw an InvalidOperationException when a switch ID below 0 was used in method: MinSwitchValue
+18:33:02.745 SwitchNumber                      OK       Switch device threw an InvalidOperationException when a switch ID above MaxSwitch was used in method: MinSwitchValue
+18:33:02.750 SwitchNumber                      OK       Switch device threw an InvalidOperationException when a switch ID below 0 was used in method: SetSwitch
+18:33:02.757 SwitchNumber                      OK       Switch device threw an InvalidOperationException when a switch ID above MaxSwitch was used in method: SetSwitch
+18:33:02.762 SwitchNumber                      OK       Switch device threw an InvalidOperationException when a switch ID below 0 was used in method: SetSwitchValue
+18:33:02.767 SwitchNumber                      OK       Switch device threw an InvalidOperationException when a switch ID above MaxSwitch was used in method: SetSwitchValue
+18:33:02.772 SwitchNumber                      OK       Switch device threw an InvalidOperationException when a switch ID below 0 was used in method: SwitchStep
+18:33:02.777 SwitchNumber                      OK       Switch device threw an InvalidOperationException when a switch ID above MaxSwitch was used in method: SwitchStep
+18:33:05.960 GetSwitchName                     OK       Found switch 0
+18:33:05.966 GetSwitchName                     OK         Name: Scope Cover
+18:33:05.971 GetSwitchDescription              OK         Description: Scope Cover 1=Open 0=Close
+18:33:05.976 MinSwitchValue                    OK         Minimum: 0
+18:33:05.982 MaxSwitchValue                    OK         Maximum: 1
+18:33:05.988 SwitchStep                        OK         Step size: 1
+18:33:05.993 SwitchStep                        OK         Step size is greater than zero
+18:33:05.999 SwitchStep                        OK         Step size is less than the range of possible values
+18:33:06.014 SwitchStep                        OK         The switch range is an integer multiple of the step size.
+18:33:06.019 CanWrite                          OK         CanWrite: True
+18:33:06.025 GetSwitch                         OK         False
+18:33:06.031 GetSwitchValue                    OK         0
+18:33:06.607 SetSwitch                         OK         GetSwitch returned False after SetSwitch(False)
+18:33:06.613 SetSwitch                         OK         GetSwitchValue returned MINIMUM_VALUE after SetSwitch(False)
+18:33:10.282 SetSwitch                         OK         GetSwitch read True after SetSwitch(True)
+18:33:10.288 SetSwitch                         OK         GetSwitchValue returned MAXIMUM_VALUE after SetSwitch(True)
+18:33:16.980 SetSwitchValue                    OK         GetSwitch returned False after SetSwitchValue(MINIMUM_VALUE)
+18:33:16.986 SetSwitchValue                    OK         GetSwitchValue returned MINIMUM_VALUE after SetSwitchValue(MINIMUM_VALUE)
+18:33:20.045 SetSwitchValue                    OK         Switch threw an InvalidOperationException when a value below SwitchMinimum was set: -1
+18:33:23.673 SetSwitchValue                    OK         GetSwitch returned True after SetSwitchValue(MAXIMUM_VALUE)
+18:33:23.679 SetSwitchValue                    OK         GetSwitchValue returned MAXIMUM_VALUE after SetSwitchValue(MAXIMUM_VALUE)
+18:33:26.770 SetSwitchValue                    OK         Switch threw an InvalidOperationException when a value above SwitchMaximum was set: 2
+18:33:29.817 SetSwitchValue                    INFO       Testing with steps that are 0% offset from integer SwitchStep values
+18:33:30.396 SetSwitchValue Offset:   0%       OK         Set and read match: 0
+18:33:34.035 SetSwitchValue Offset:   0%       OK         Set and read match: 1
+18:33:37.168 SetSwitchValue                    INFO       Testing with steps that are 25% offset from integer SwitchStep values
+18:33:37.736 SetSwitchValue Offset:  25%       INFO       Set/Read differ by 20-30% of SwitchStep. Set: 0.25, Read: 0
+18:33:40.848 SetSwitchValue                    INFO       Testing with steps that are 50% offset from integer SwitchStep values
+18:33:41.415 SetSwitchValue Offset:  50%       INFO       Set/Read differ by 40-50% of SwitchStep. Set: 0.5, Read: 1
+18:33:44.528 SetSwitchValue                    INFO       Testing with steps that are 75% offset from integer SwitchStep values
+18:33:45.097 SetSwitchValue Offset:  75%       INFO       Set/Read differ by 20-30% of SwitchStep. Set: 0.75, Read: 1
+18:33:48.246 SetSwitchValue                    OK         Switch has been reset to its original state
+ 
+ 
+Conformance test complete 
+ 
+No errors, warnings or issues found: your driver passes ASCOM validation!! 

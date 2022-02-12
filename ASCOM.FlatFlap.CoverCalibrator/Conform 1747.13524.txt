@@ -1,0 +1,70 @@
+Start-up ASCOM Device Conformance Checker - Version 6.5.7933.18877 - 64bit mode
+Start-up ASCOM Platform 6.6 6.6.0.3444
+ 
+ 
+ConformanceCheck ASCOM Device Conformance Checker Version 6.5.7933.18877, Build time: 9/20/2021 11:29:18
+ConformanceCheck Running on: ASCOM Platform 6.6 6.6.0.3444
+ 
+ConformanceCheck Driver ProgID: ASCOM.FlatFlap.CoverCalibrator
+ 
+Error handling 
+Error number for "Not Implemented" is: 80040400
+Error number for "Invalid Value 1" is: 80040405
+Error number for "Value Not Set 1" is: 80040402
+Error number for "Value Not Set 2" is: 80040403
+Error messages will not be interpreted to infer state.
+ 
+17:47:26.460 Driver Access Checks              OK       
+17:47:27.149 AccessChecks                      OK       Successfully created driver using late binding
+17:47:29.251 AccessChecks                      OK       Successfully connected using late binding
+17:47:29.255 AccessChecks                      INFO     The driver is a .NET object
+17:47:29.258 AccessChecks                      INFO     The AssemblyQualifiedName is: ASCOM.FlatFlap.CoverCalibrator, ASCOM.FlatFlap.CoverCalibrator, Version=1.0.
+17:47:29.261 AccessChecks                      INFO     The driver implements interface: ASCOM.DeviceInterface.ICoverCalibratorV1
+17:47:29.952 AccessChecks                      OK       Successfully created driver using early binding to ICoverCalibratorV1 interface
+17:47:32.041 AccessChecks                      OK       Successfully connected using early binding to ICoverCalibratorV1 interface
+17:47:32.068 AccessChecks                      OK       Successfully created driver using driver access toolkit
+17:47:34.161 AccessChecks                      OK       Successfully connected using driver access toolkit
+ 
+Conform is using ASCOM.DriverAccess.CoverCalibrator to get a CoverCalibrator object
+17:47:34.194 ConformanceCheck                  OK       Driver instance created successfully
+ 
+Pre-connect checks 
+ 
+Connect 
+17:47:36.359 ConformanceCheck                  OK       Connected OK
+ 
+Common Driver Methods 
+17:47:36.407 InterfaceVersion                  OK       1
+17:47:36.447 Connected                         OK       True
+17:47:36.479 Description                       OK       FlatFlap CoverCalibrator
+17:47:36.528 DriverInfo                        OK       CoverCalibrator driver for FlatFlap. Version: 1.0
+17:47:36.574 DriverVersion                     OK       1.0
+17:47:36.621 Name                              OK       ASCOM FlatFlap CoverCalibrator
+17:47:36.653 CommandString                     INFO     Conform cannot test the CommandString method
+17:47:36.657 CommandBlind                      INFO     Conform cannot test the CommandBlind method
+17:47:36.661 CommandBool                       INFO     Conform cannot test the CommandBool method
+17:47:36.665 Action                            INFO     Conform cannot test the Action method
+17:47:36.670 SupportedActions                  OK       Driver returned an empty action list
+ 
+Properties 
+17:47:36.858 CalibratorState                   OK       Off
+17:47:36.863 CoverState                        OK       Closed
+17:47:36.867 MaxBrightness                     OK       1
+17:47:36.906 Brightness                        OK       1
+ 
+Methods 
+17:47:39.471 OpenCover                         OK       OpenCover was successful. The asynchronous open took 2.5 seconds
+17:47:42.434 CloseCover                        OK       CloseCover was successful. The asynchronous close took 2.9 seconds
+17:47:44.020 HaltCover                         OK       Cover is no longer moving after issuing the HaltCover command
+17:47:44.077 CalibratorOn                      OK       CalibratorOn with brightness -1 threw an InvalidValueException as expected
+17:47:44.158 CalibratorOn                      OK       CalibratorOn with brightness 0 was successful. The synchronous operation took 0.0 seconds
+17:47:44.163 CalibratorOn                      OK       The Brightness property does return the value that was set
+17:47:44.236 CalibratorOn                      OK       CalibratorOn with brightness 1 was successful. The synchronous operation took 0.0 seconds
+17:47:44.241 CalibratorOn                      OK       The Brightness property does return the value that was set
+17:47:44.281 CalibratorOn                      OK       CalibratorOn with brightness 2 threw an InvalidValueException as expected
+17:47:44.362 CalibratorOff                     OK       CalibratorOff was successful. The synchronous action took 0.0 seconds
+17:47:44.367 CalibratorOff                     OK       Brightness is set to zero when the calibrator is turned off
+ 
+Conformance test complete 
+ 
+No errors, warnings or issues found: your driver passes ASCOM validation!! 
