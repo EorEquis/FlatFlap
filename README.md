@@ -1,24 +1,26 @@
 ## What 
-	Motorized ScopeCover - To be used as an ASCOM Switch to open/close a scope cover
-	V2 will support a relay to turn a light/el panel on/off for flats.
+	A "Cover/Calibrator".  Features a motorized telescope cover, and optional calibrator (light/led/EL panel) controller.
 
 ## Who
 	Created By:  eorequis@stuffupthere.com
 
 
 ## When
-	Last modified:  2022-02-10
+	Last modified:  2022-02-11
 
 ## Current State
 	V2 Arduino Firmware
 		Protocol documented in arduino code, basic syntax is :
-		c00n# : c = command ([P]ing, [C]over, [L]ight) and n is a value if necessary (0 for off or close, 1 for on or open)
-	ASCOM Switch Driver updated to V2 protocol (0 = close, 1 = open), conformance passed
-		Eventually an ASCOM CoverCalibrator driver is coming to allow use w/ EL Panel.  Device will continue to support either ASCOM driver,
-			for those who wish only a cover.
-	Very basic control app.  Open and Close buttons, and connect button.
+		c00n# : c = command ([P]ing, [C]over, [L]ight) and n is typically a value maped to ASCOM enums for cover and calibrator
+	ASCOM Switch Driver updated to V2 protocol 
+		The ASCOM.ScopeCover.Switch can function as a switch driver to control only the cover.  Useful if you don't want/need the
+		complexity of a calibration light, and also allows greater flexibility with various clients/sequencing strategies.
+	ASCOM CoverCalibrator Driver
+		The ASCOM.FlatFlap.CoverCalibrator driver can be used with either a cover only (the light functionality will still present
+		in the client, but will do nothing) or with some sort of switchable light source.  (My own device is a small EL sheet and 12V DC
+		inverter, controlled by a small relay).
 	
-## Test Cases
+## Tested With
 	Servos: 
 		HiTec HS-635HB - https://hitecrcd.com/products/servos/discontinued-servos-servo-accessories/hs-635hb-karbonite-high-torque-servo/product
 		Aero Sport CS-28R - They're so old there is no URL.
@@ -27,6 +29,9 @@
 		Gikfun Arduino Nano Clone - https://www.amazon.com/gp/product/B00SGMEH7G
 		Arduino Uno - https://www.amazon.com/gp/product/B008GRTSV6/
 
+	Calibrator Lights
+		Adafruit EL Panel - https://www.adafruit.com/product/625 with Adafruit 12V EL inverter - https://www.adafruit.com/product/448
+		
 	Software:
 		Sequence Generator Pro 4.0.0.700 64 Bit
 		N.I.N.A 2.0 BETA 019
@@ -51,7 +56,11 @@
 		"Switch Drivers" section on the left.  Click "ASCOM.ScopeCover.Switch", and then in the right pane, add a new Value
 		called "COM Port" (Note the space) with Data of "COMn" (Note the lack of a space) where n is your device's com port.
 
-![image](https://user-images.githubusercontent.com/6656546/153234209-96820275-60fd-41fb-8752-63429af6ffd7.png)
+		![image](https://user-images.githubusercontent.com/6656546/153234209-96820275-60fd-41fb-8752-63429af6ffd7.png)
+		
+		You should also note : If you install the Switch Driver, and later the CC driver, using the same arduino, SGP
+		will retain the previous switch driver's config, and auto-connect to that COM port, thus causing connection
+		attempts to the new CC driver to fail, Access to COM Port Denied.
 
 
 
