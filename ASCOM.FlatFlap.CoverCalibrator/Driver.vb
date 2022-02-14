@@ -184,7 +184,7 @@ Public Class CoverCalibrator
                     objSerial.Connected = True
                     connectedState = True
                     ' Either throw a 10uf capacitor between the arduino's GND and RST pins to disable reset on serial connect, or
-                    ' wait(2000)
+                    wait(2000)
                     returnValue = CommandString("P000")
                     If returnValue = "P999" Then
                         TL.LogMessage("Connected Set", "Connected")
