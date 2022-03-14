@@ -10,6 +10,7 @@
     2022-02-10  : V2 comms protocol, char handling
     2022-02-10  : Addition of light control, debugging/improving V2 protocol, mirroring ASCOm CoverCalibrator enums for cover and light, debug char handling
     2022-02-12  : Return "NotPresent" value for calibrator if light is not present, based on #define set by user before upload
+    2022-03-14  : Happy Pi day.  Force lightPin LOW on setup, to try to troubleshoot strange behaviour for another user.  not a bad idea either way.
 
   Tested with these servos: 
     HiTec HS-635HB - https://hitecrcd.com/products/servos/discontinued-servos-servo-accessories/hs-635hb-karbonite-high-torque-servo/product
@@ -40,6 +41,7 @@ void setup() {
   myservo.write(currentpos);
   myservo.attach(servoPin);
   pinMode(lightPin,OUTPUT);
+  digitalWrite(lightPin,LOW);
   #ifdef CALIBRATOR
     lightStatus = CALIBRATOROFF;
   #endif
