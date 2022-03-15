@@ -50,8 +50,13 @@
 		Adafruit 12V EL inverter - https://www.adafruit.com/product/448
 		
 	Software:
-		Sequence Generator Pro 4.0.0.700 64 Bit
-		N.I.N.A V2.0 BETA 019 and V2.0 BETA 045
+		Sequence Generator Pro 
+			4.0.0.700 64 Bit
+			4.1.0.741 64 Bit
+		N.I.N.A 
+			V2.0 BETA 019 
+			V2.0 BETA 045
+			V2.0 BETA 049
 
 ## Usage Notes
 	Arduino resets on serial connection. (Ignore if using ScopeCover only)

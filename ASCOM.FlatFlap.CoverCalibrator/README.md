@@ -12,8 +12,13 @@
 	
 ## Tested With
 	Software:
-		Sequence Generator Pro 4.0.0.700 64 Bit
-		N.I.N.A 2.0 BETA 019
+		Sequence Generator Pro 
+			4.0.0.700 64 Bit
+			4.1.0.741 64 Bit
+		N.I.N.A 
+			V2.0 BETA 019 
+			V2.0 BETA 045
+			V2.0 BETA 049
 
 ## Usage Notes
 	Arduino resets on serial connection.
