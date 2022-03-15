@@ -38,7 +38,13 @@
 	Arduino Boards:
 		Gikfun Arduino Nano Clone - https://www.amazon.com/gp/product/B00SGMEH7G
 		Arduino Uno - https://www.amazon.com/gp/product/B008GRTSV6/
-
+		ELEGOO UNO R3 Board - https://www.amazon.com/ELEGOO-Board-ATmega328P-ATMEGA16U2-Compliant/dp/B01EWOE0UU
+		ELEGOO MEGA R3 Clone - https://www.amazon.com/gp/product/B01H4ZLZLQ/
+		Some Uno clone I can't even find a name of or link to.
+	
+	Relays:
+		ARCELI KY-019 5V One Channel Relay - https://www.amazon.com/gp/product/B07BVXT1ZK/
+		
 	Calibrator Lights
 		Adafruit EL Panel - https://www.adafruit.com/product/625 
 		Adafruit 12V EL inverter - https://www.adafruit.com/product/448
@@ -48,6 +54,18 @@
 		N.I.N.A V2.0 BETA 019 and V2.0 BETA 045
 
 ## Usage Notes
+	Arduino resets on serial connection. (Ignore if using ScopeCover only)
+		You can handle this 1 of 2 ways.  
+		
+		Either retain the 2000ms wait in the Connected(Set)
+		of the ASCOM driver code (it is there by default and both setups include drivers
+		compiled with this option)
+		
+		OR
+		
+		Add a 10uf capacitor to the arduino between GND and RST, remove the wait(2000) 
+		line from the driver code, recompile and resintall the driver.
+		
 	SGP Switch Handling
 		Sequence Generator Pro (As of v4 anyway) handles switches...strangely.  
 		After initial install, the first time you run SGP, it will claim to 

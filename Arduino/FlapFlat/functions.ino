@@ -2,14 +2,14 @@ void setLight(int val)
 {
   if ( val == CALIBRATORREADY)
   {
-    digitalWrite(lightPin,HIGH);
+    digitalWrite(lightPin, relayOn);
     #ifdef DEBUG
       Serial.println("Light on");
     #endif     
   }
   else if ( val == CALIBRATOROFF)
   {
-    digitalWrite(lightPin,LOW);
+    digitalWrite(lightPin, relayOff);
     #ifdef DEBUG
       Serial.println("Light off");
     #endif              
@@ -19,6 +19,7 @@ void setLight(int val)
 
 void setShutter(int val)
 {
+  
   if ( val == COVEROPEN)
   {
     targetpos = 0;
