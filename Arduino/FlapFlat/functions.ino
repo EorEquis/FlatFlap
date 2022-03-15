@@ -22,7 +22,7 @@ void setShutter(int val)
   
   if ( val == COVEROPEN)
   {
-    targetpos = 0;
+    targetpos = openPos;
   }
   else if ( val == COVERCLOSED)
   {

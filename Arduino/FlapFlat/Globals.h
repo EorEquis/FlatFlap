@@ -12,6 +12,10 @@ int servodelay = 15;          // ms to wait after a servo move of 1 degree.  Hig
 int currentpos;               // current servo position
 int targetpos;                // target servo position
 int closedPos = 104;          // change this to achieve a good flat close against the end of the scope tube.
+int openPos = 0               // Generally this should not be changed, but maybe your mounting style is different.
+                              // The idea here is to start with a known physical location : Servo position 0
+                              // Attach cover at that point, in a condition that would be "open" for you...then swing to 
+                              // closedPos of your choice, that makes a nice fit.
 int relayOn;                  // Holds 1 or 0 based on RELAYHIGH being defined or not.
 int relayOff;                 // Holds 1 or 0 based on RELAYHIGH being defined or not.
 String strCmd;                // holds the command sent via serial
