@@ -12,6 +12,7 @@
     2022-02-12  : Return "NotPresent" value for calibrator if light is not present, based on #define set by user before upload
     2022-03-14  : Happy Pi day.  Force lightPin LOW on setup, to try to troubleshoot strange behaviour for another user.  not a bad idea either way.
     2022-03-15  : Add options for relays that expect LOW t be turned on, add comments/testing results.
+    2022-03-16  : Remove hardcoded start position for servo when powered up.  Move user selectable options to their own config file.  Add toggle for servo direction
 
   Stuff you should do before uploading:
     * Check out Globals.h  There are several #define at the top with decisions you need to make.
@@ -36,30 +37,34 @@
     Adafruit 12V EL Inverter - https://www.adafruit.com/product/448
 
   Notes:
-    Besure to #define (or comment out) CALIBRATOR in Globals.h 
+    Be sure to check configurable options in Config.h
     
 */
 
 #include <Servo.h>
 #include "Globals.h"
+#include "Config.h"
 
 
 void setup() {
   // initialize the serial communication:
   Serial.begin(9600);
   // Set servo initial position closed, attach servo
-  currentpos = 100;
+  currentpos = closedPos;
   myservo.write(currentpos);
   myservo.attach(servoPin);
+
   #ifdef CALIBRATOR
     lightStatus = CALIBRATOROFF;
   #endif
-  #ifdef RELAYHIGH
-    relayOn = 1;
-    relayOff = 0;
-  #else
+
+  #ifdef RELAYLOW
     relayOn = 0;
     relayOff = 1;
+  #endif    
+
+  #ifdef SERVOREVERSE
+    servoDirection = -1;
   #endif    
 
   pinMode(lightPin,OUTPUT);

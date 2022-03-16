@@ -1,23 +1,23 @@
 void handleServo()
 {
-  if (currentpos < targetpos && motorDirection == CLOSING) 
+  if ((servoDirection * currentpos) < (servoDirection * targetpos) && motorDirection == CLOSING) 
     {
-      while (currentpos < targetpos) 
+      while ((servoDirection * currentpos) < (servoDirection * targetpos)) 
         {
-          myservo.write(currentpos + 1);
+          myservo.write(currentpos + servoDirection);
           delay(servodelay);
-          currentpos = currentpos + 1;
+          currentpos = currentpos + servoDirection;
         }
       motorDirection = NONE;
       coverStatus = COVERCLOSED;
     }
-  else if (currentpos > targetpos && motorDirection == OPENING) 
+  else if (currentpos > (servoDirection * targetpos) && motorDirection == OPENING) 
     {
-      while (currentpos > targetpos)
+      while ((servoDirection * currentpos) > (servoDirection * targetpos))
         {
-          myservo.write(currentpos - 1);
+          myservo.write(currentpos - servoDirection);
           delay(servodelay);
-          currentpos = currentpos - 1;
+          currentpos = currentpos - servoDirection;
         }
       motorDirection = NONE;
       coverStatus = COVEROPEN;
