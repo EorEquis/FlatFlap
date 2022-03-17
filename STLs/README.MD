@@ -19,4 +19,9 @@
 	Nano Enclosure is a modified version of https://www.thingiverse.com/thing:5238660
 		The indent for the USB plug has been made deeper for more secure connections,
 		and the lid	tweaked for a slightly better fit.
-  
+
+## CAD Files
+	Where I have them, I have uploaded SketchUp files, created in Sketchup Make 2017.
+	
+	If you modify/create your own files for use on a particular scope/lens/etc, please
+	share whatever STLs and/or CAD files you have. :)
