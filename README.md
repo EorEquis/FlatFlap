@@ -34,6 +34,7 @@
 	Servos: 
 		HiTec HS-635HB - https://servodatabase.com/servo/hitec/hs-635hb
 		Aero Sport CS-28R - They're so old there is no URL.
+		SG-90 Micro Servos.  There's dozens of various brands with the same model number.  Any should work.
 			
 	Arduino Boards:
 		Gikfun Arduino Nano Clone - https://www.amazon.com/gp/product/B00SGMEH7G
