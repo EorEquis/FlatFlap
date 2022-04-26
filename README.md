@@ -11,24 +11,51 @@
 
 ## Current State
 	V2 Arduino Firmware
-		Protocol documented in arduino code, basic syntax is :
+		The basic syntax of the serial connection protocol is :
 		c00n# : c = command ([P]ing, [C]over, [L]ight) and n is typically a value mapped to ASCOM enums
 		for cover and calibrator.
 		
+		List of common commands:
+		P000#
+		Ping to check if board is connected. Returns P999* when successful.
+		
+		C001#
+		Close the cover. Returns C020* if closing, and C011* if already closed.
+		
+		C003#
+		Open the cover. Returns C020* if opening, and C031* if already opened.
+		
+		L001#
+		Turn off light. Returns L010* if it switch off, and L011* if already off.
+		S001* or S003* means the light is not configured.
+		
+		L003#
+		Turn On light. Returns L030* if it switched on, and L031* if already on.
+		S001* or S003* means the light is not configured.
+		
+		S000#
+		Check staus. Returns S0[light status][cover status]*
+		Light status can be 0 (not configured), 1 (off), or 3 (on).
+		Cover status can be 1 (closed), 2 (moving), or 3 (open).
+		Any other numbers indicate an error.
+		
+	ASCOM Driver Options. Use only one, you cannot connect to both at the same time. Only CoverCalibrator can
+	control both the cover and light.
+	
 	ASCOM Switch Driver updated to V2 protocol 
 		The ASCOM.ScopeCover.Switch can function as a switch driver to control only the cover.  Useful
 		if you don't want/need the complexity of a calibration light, and also allows greater flexibility 
 		with various clients/sequencing strategies.
 		
-		Download ScopeCover Setup.exe if all you want is this driver.
+		Download ScopeCover Setup.exe to install this driver.
 	
 	ASCOM CoverCalibrator Driver
 		The ASCOM.FlatFlap.CoverCalibrator driver can be used with either a cover only (the light 
 		functionality will still present in the client, but will do nothing) or with some sort of 
 		switchable light source.  (My own device is a small EL sheet and 12V DC inverter, 
-		controlled by a small relay).
+		controlled by a small relay). This driver is not capable of controlling brightness.
 		
-		Download FlatFlap Setup.exe if all you want is this driver.
+		Download FlatFlap Setup.exe to install this driver.
 	
 ## Tested With
 	Servos: 
@@ -58,19 +85,47 @@
 			V2.0 BETA 019 
 			V2.0 BETA 045
 			V2.0 BETA 049
+			V2.0 RC001
 
 ## Usage Notes
+	V2 Arduino Firmware configuration
+		Compile and upload the firmware with the Arduino IDE. Make sure to choose
+		the correct board, processor, and port under the "Tools" menu. Everything
+		you need to change is in "Config.h"
+		
+		DEBUG cannot be used with the ASCOM driver. It gives aditional responses
+		in the serial monitor, that the driver cannot understand.
+		
+		SERVOREVERSE is needed if the cover closes when you try to open it and vice
+		versa. You may have to switch the closedPos and openPos values, since this
+		option only changes direction.
+		
+		RELAYLOW is needed if the light turns on when you try to turn it off and
+		vice versa.
+		
+		CALIBRATOR needs to be defined if you are using a light panel. Comment it
+		out if you only want to use the scope cover.
+		
+		closedPos may need to be adjusted to keep from trying to force the servo
+		past the fully closed position. If the servo makes noise when closed,
+		adjust until it is sealed but quiet.
+		
+		openPos can be adjusted if you want the cover to open a different amount.
+		
+		servoPin can be changed if you want to use a differnt pin for the servo.
+		
+		lightPin can be changed if you want to use a different pin for the relay.
+		
+		servodelay controls the speed the servo moves.
+	
 	Arduino resets on serial connection. (Ignore if using ScopeCover only)
-		You can handle this 1 of 2 ways.  
+		The ASCOM driver code by default is compiled with a 2000ms wait when
+		connecting. This will give the Arduino time to reset before use.
 		
-		Either retain the 2000ms wait in the Connected(Set)
-		of the ASCOM driver code (it is there by default and both setups include drivers
-		compiled with this option)
-		
-		OR
-		
-		Add a 10uf capacitor to the arduino between GND and RST, remove the wait(2000) 
-		line from the driver code, recompile and resintall the driver.
+		Optionally, you can stop it from resetting by adding a 10uf capacitor to
+		the arduino between GND and RST. You can then remove the wait(2000) line
+		in the Connected(Set) from the ASCOM driver code, recompile and resintall
+		the driver.
 		
 	SGP Switch Handling
 		Sequence Generator Pro (As of v4 anyway) handles switches...strangely.  
